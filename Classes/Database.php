@@ -1,5 +1,5 @@
 <?php 
-require_once "../boot.php";
+require_once "boot.php";
 class Database{
     protected $utilisateur;
     protected $password;

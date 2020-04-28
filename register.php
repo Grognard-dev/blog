@@ -1,6 +1,6 @@
 <?php
 
-require_once "../boot.php";
+require_once "boot.php";
 
 $db = new Database($config["utilisateur"],$config["mdp"], $config["dsn"]);
 
@@ -50,4 +50,4 @@ if (isset($_POST['bouton'])){
         die;   
     }
 }
-require 'vues/register.html';
+require 'vue/register.php';

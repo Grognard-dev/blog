@@ -1,5 +1,5 @@
 <?php 
-require_once "../boot.php";
+require_once "boot.php";
 
 class UserTable
 {
@@ -45,8 +45,6 @@ class UserTable
         ':pseudo'=>$user->pseudo,
         ':token'=> $user->token,
         ':actif'=>0]) ;
-
-        
     }
 
      public function activationtoken($pseudo)

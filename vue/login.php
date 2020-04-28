@@ -9,15 +9,15 @@
 <body>
     <div class="login-page">
   <div class="form">
-    <form class="login-form" method="POST">
+    <form class="login-form" method="POST" action="">
       <input type="text" name="pseudo" placeholder="pseudo"/>
       <input type="password" name="mdp" placeholder="mot de passe"/>
-      <button name="bouton">login</button>
-      <p class="message">Not registered? <a href="https://lefevre.simplon-charleville.fr/projet_blog/login-register/register.php">Create an account</a></p>
+      <button name="login">login</button>
+      <p class="message">Not registered? <a href="register.php">Create an account</a></p>
     </form>
   </div>
 </div>
+<a href="logout.php">deconnexion</a>
 
-<script src="js/login.js"></script>
 </body>
 </html>

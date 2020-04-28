@@ -9,14 +9,14 @@
 <body>
       <div class="login-page">
   <div class="form">
-    <form class="register-form" method="POST">
+    <form class="register-form" method="POST" action="">
       <input type="text" name="nom" placeholder="nom"/>
         <input type="text" name="prenom" placeholder="prenom"/>
           <input type="text" name="pseudo" placeholder="pseudo"/>
       <input type="password" name="mdp" placeholder="mot de passe"/>
       <input type="text" name="email" placeholder="Email"/>
       <button name="bouton">inscription</button>
-      <p class="message">Already registered? <a href="https://lefevre.simplon-charleville.fr/projet_blog/login-register/login.php">Sign In</a></p>
+      <p class="message">Already registered? <a href="login.php">Sign In</a></p>
     </form>
   </div>
 </div>
