@@ -1,21 +1,21 @@
 <?php
-require "boot.php"; 
+require "../boot.php"; 
 
 $db = new Database($config["utilisateur"],$config["mdp"], $config["dsn"]);
 $userTable = new UserTable($db);
 
-if(empty($_GET['Pseudo']))
+if(empty($_GET['pseudo']))
 {
   $erreur = "Erreur Pseudo";
   die;
 }
-if(empty($_GET['token_utilisateur']))
+if(empty($_GET['token']))
 {
   $erreur = "Erreur token";
   die;
 }
-$Pseudo = $_GET['Pseudo'];
-$token_utilisateur = $_GET['token_utilisateur'];
+$Pseudo = $_GET['pseudo'];
+$token = $_GET['token'];
 
 
 $user = $userTable->recupParPseudo($Pseudo);
@@ -30,13 +30,13 @@ if($user->actif == 1)
 else 
 {
  
-  if($token_utilisateur == $user->token_utilisateur)    
+  if($token == $user->token)    
   {
 
      $userTable->activationtoken($user->pseudo);
       
       echo "Votre compte a bien été activé !";
-      echo "<a href='connexion.php'>Retour a la page de connexion</a>";
+      echo "<a href='login.php'>Retour a la page de connexion</a>";
   }
   else 
   {

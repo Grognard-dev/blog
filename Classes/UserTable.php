@@ -1,8 +1,5 @@
 <?php 
-require_once "boot.php";
-require_once "Database.php";
-require_once "User.php";
-
+require_once "../boot.php";
 
 class UserTable
 {
@@ -18,7 +15,7 @@ class UserTable
     
      public  function recupParId($ID)
     {
-         $requete = $this->db->prepareAndExecute('SELECT * FROM utilisateur WHERE ID_utilisateur = :ID_utilisateur',[':ID_utilisateur' => $ID]);
+         $requete = $this->db->prepareAndExecute('SELECT * FROM blog_utilisateur WHERE id_utilisateur = :id_utilisateur',[':id_utilisateur' => $ID]);
         $tableau = $requete->fetch();
         if($tableau === false){
             return null;
@@ -28,7 +25,7 @@ class UserTable
 
     public function recupParPseudo($pseudo)
     {
-         $requete = $this->db->prepareAndExecute('SELECT * FROM utilisateur WHERE Pseudo = :Pseudo',[':Pseudo' => $pseudo]);
+         $requete = $this->db->prepareAndExecute('SELECT * FROM blog_utilisateur WHERE pseudo = :pseudo',[':pseudo' => $pseudo]);
         $tableau = $requete->fetch();
         if($tableau === false){
             return null;
@@ -39,27 +36,39 @@ class UserTable
     
      public function insertUser($user)
     {
-       $inscription = $this->db->prepareAndExecute("INSERT INTO utilisateur (Email, mot_de_passe, Prenom, Nom, Pseudo) 
-        VALUES (:Email, :mot_de_passe, :Prenom, :Nom, :Pseudo)",
-        [':Email' => $user->email,
-        ':mot_de_passe' => password_hash($user->mot_de_passe, PASSWORD_DEFAULT ),
-        ':Prenom' => $user->prenom,
-        ':Nom'=>$user->nom,
-        ':Pseudo'=>$user->pseudo]) ;
+       $inscription = $this->db->prepareAndExecute("INSERT INTO blog_utilisateur (email, mdp, prenom, nom, pseudo,token,actif) 
+        VALUES (:email, :mdp, :prenom, :nom, :pseudo,:token,:actif)",
+        [':email' => $user->email,
+        ':mdp' => password_hash($user->mdp, PASSWORD_DEFAULT ),
+        ':prenom' => $user->prenom,
+        ':nom'=>$user->nom,
+        ':pseudo'=>$user->pseudo,
+        ':token'=> $user->token,
+        ':actif'=>0]) ;
+
         
+    }
+
+     public function activationtoken($pseudo)
+    {
+     
+        $this->db->prepareAndExecute("UPDATE blog_utilisateur SET actif = 1 WHERE pseudo = :pseudo ",[':pseudo' => $pseudo]);
+      
+     
     }
 
     protected function createUserFromDbResult($tableau)
     {
          $user = new User();
          //hydratation des valeurs //
-        $user->ID_utilisateur = $tableau['ID_utilisateur'];
-        $user->nom = $tableau['Nom'];
-        $user->prenom = $tableau['Prenom'];
-        $user->mot_de_passe = $tableau['mot_de_passe'];
-        $user->pseudo = $tableau['Pseudo'];
-        $user->email = $tableau['Email'];
-        $user->admin = $tableau['Admin'];
+        $user->id_utilisateur = $tableau['id_utilisateur'];
+        $user->nom = $tableau['nom'];
+        $user->prenom = $tableau['prenom'];
+        $user->mdp = $tableau['mdp'];
+        $user->pseudo = $tableau['pseudo'];
+        $user->email = $tableau['email'];
+        $user->actif = $tableau['actif'];
+         $user->token = $tableau['token'];
         return $user;
     }
 }
