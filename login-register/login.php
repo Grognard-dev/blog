@@ -31,14 +31,14 @@ if (isset($_POST['bouton'])){
                 session_start();
             }
             session_regenerate_id();
-            $_SESSION["id"] = $utilisateur->id_utilisateur;
-            $_SESSION["pseudo"] = $utilisateur->pseudo;
+            $_SESSION["ID"] = $utilisateur->id_utilisateur;
+            $_SESSION["Pseudo"] = $utilisateur->pseudo;
             if($utilisateur->admin === 1){
                 $_SESSION['is_admin'] = true;
             }else{
                 $_SESSION['is_admin'] = false;
             }
-            header('Location: register.php');
+            header('Location: https://lefevre.simplon-charleville.fr/projet_blog/login-register/register.php');
             exit();
         }
     }
