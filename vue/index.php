@@ -28,6 +28,7 @@
 		<link rel="stylesheet" href="css/owl.carousel.css">
 		<link rel="stylesheet" href="css/jquery-ui.css">
 		<link rel="stylesheet" href="css/main.css">
+		
 	</head>
 	<body>
 		<header>
@@ -47,8 +48,16 @@
 							<ul>
 								<li><a href="tel:+440 012 3654 896"><span class="lnr lnr-phone-handset"></span><span>+440 012 3654 896</span></a></li>
 								<li><a href="mailto:support@colorlib.com"><span class="lnr lnr-envelope"></span><span>support@colorlib.com</span></a></li>
-								<li><a href="../login.php"><span class="lnr lnr-envelope"></span><span>login</span></a></li>
-								<li><a href="../register.php"><span class="lnr lnr-envelope"></span><span>register</span></a></li>
+								  <?php if(isset($_SESSION['Pseudo'])): ?>
+     						 <form method="POST" action="logout.php" >
+        						<li><button>Deconnexion</button></li>
+     							 </form>
+							<li><a class="lnr lnr-envelope" href="insertion_articles.php">insérer article</a></li>
+      							<?php else:?>
+      
+								<li><a href="login.php"><span class="lnr lnr-envelope"></span><span>login</span></a></li>
+								<li><a href="register.php"><span class="lnr lnr-envelope"></span><span>register</span></a></li>
+								 <?php endif ?>
 							</ul>
 						</div>
 					</div>

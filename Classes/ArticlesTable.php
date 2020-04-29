@@ -19,20 +19,20 @@ class ArticlesTable
         if($tableau === false){
             return null;
         }
-        return $this->createFilm($tableau);
+        return $this->createArticles($tableau);
     }
 
-    public function recupParNomfilm($nom)
+    public function recupParNomArticles($nom)
     {
          $requete = $this->db->prepareAndExecute('SELECT * FROM blog_articles WHERE nom = :nom',[':nom' => $nom]);
         $tableau = $requete->fetch();
         if($tableau === false){
             return null;
         }
-        return $this->createFilm($tableau);
+        return $this->createArticles($tableau);
     }
 
-    public function recuptousfilm()
+    public function recupTousArticles()
     {
          $requete = $this->db->prepareAndExecute("SELECT * FROM blog_articles",[]);
         $tableau = $requete->fetchAll();
@@ -42,7 +42,7 @@ class ArticlesTable
         $tab = [];
         foreach ($tableau as $articles)
         {
-            $tab[$articles['id_articles']]  = $this->createFilm($articles);
+            $tab[$articles['id_articles']]  = $this->createArticles($articles);
             
         }
          return $tab;
@@ -51,26 +51,33 @@ class ArticlesTable
     }
     public function insertArticles($articles)
     {
-       $inscription = $this->db->prepareAndExecute("INSERT INTO blog_articles (nom, date_de_parution, photo_card, text_card, archive) 
-        VALUES (:nom, :date_de_parution, :photo_card, :text_card, :archive)",
+       $inscription = $this->db->prepareAndExecute("INSERT INTO blog_articles (nom, date_de_parution, photo_card, text_card, archive, id_utilisateur) 
+        VALUES (:nom, :date_de_parution, :photo_card, :text_card, :archive, :id_utilisateur)",
         [':nom' => $articles->nom,
         ':date_de_parution' => $articles->date_de_parution,
         ':photo_card' => $articles->photo_card,
         ':text_card'=>$articles->text_card,
-        ':archive'=>$articles->archive,]) ;
+        ':archive'=>$articles->archive,
+        ':id_utilisateur'=>$articles->id_utilisateur,]) ;
 
         
     }
 
-    protected function createFilm($tableau)
+    public function insertPhoto($ID,$photo_card)
     {
-         $articles = new Articles();
+         $requete = $this->db->prepareAndExecute("UPDATE blog_articles SET photo_card = :photo_card WHERE id_article = :ID ",[':ID' => $ID, ':photo_card' => $photo_card]);
+    }
+
+    protected function createArticles($tableau)
+    {
+         $articles = new Article();
         $articles->id_articles = $tableau['id_articles'];
         $articles->nom = $tableau['nom'];
         $articles->date_de_parution = $tableau['date_de_parution'];
         $articles->photo_card = $tableau['photo_card'];
         $articles->text_card = $tableau['text_card'];
          $articles->archive = $tableau['archive'];
+        $articles->id_utilisateur = $tableau['id_utilisateur'];
         return $articles;
     }
 }

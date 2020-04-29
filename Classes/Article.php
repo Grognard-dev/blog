@@ -1,6 +1,6 @@
 <?php 
 require_once "boot.php";
-class Articles
+class Article
 {
    
     public $id_article;
@@ -8,6 +8,7 @@ class Articles
     public $date_de_parution;
     public $photo_card;
     public $text_card;
-    public $archive;
+    public $archive = 0;
+    public $id_utilisateur;
     
 }

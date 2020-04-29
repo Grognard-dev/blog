@@ -17,6 +17,7 @@
       <input type="text" name="email" placeholder="Email"/>
       <button name="bouton">inscription</button>
       <p class="message">Already registered? <a href="login.php">Sign In</a></p>
+      <a class="message" href="index.php">Retour a l'accueil</a>
     </form>
   </div>
 </div>

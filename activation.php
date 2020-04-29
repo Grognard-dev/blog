@@ -1,5 +1,5 @@
 <?php
-require "../boot.php"; 
+require "boot.php"; 
 
 $db = new Database($config["utilisateur"],$config["mdp"], $config["dsn"]);
 $userTable = new UserTable($db);

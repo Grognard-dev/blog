@@ -20,11 +20,10 @@ if (isset($_POST['login'])){
         if($utilisateur === null){
             $erreur =  "login et / ou mot de passe incorrect";
         }
-        
         if(!password_verify($mdp, $utilisateur->mdp ?? '')) {
             $erreur =  "login et / ou mot de passe incorrect";
+            
         }
-        
         if( $erreur === null){
             if (session_status() === PHP_SESSION_NONE){
                 session_start();
@@ -37,7 +36,7 @@ if (isset($_POST['login'])){
             }else{
                 $_SESSION['is_admin'] = false;
             }
-            header('Location: register.php');
+            header('Location: index.php');
             exit();
         }
     }

@@ -37,7 +37,7 @@ if (isset($_POST['bouton'])){
         
         Pour activer votre compte, veuillez cliquer sur le lien ci-dessous
         ou copier/coller dans votre navigateur Internet.
-      http://lefevre.simplon-charleville.fr/projet_blog/login-register/activation.php?pseudo='.urlencode($user->pseudo).'&token='.urlencode($token).'
+      http://lefevre.simplon-charleville.fr/projet_blog/activation.php?pseudo='.urlencode($user->pseudo).'&token='.urlencode($token).'
         
         
         ---------------

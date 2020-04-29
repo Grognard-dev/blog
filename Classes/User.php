@@ -10,7 +10,8 @@ class User
     public $pseudo;
     public $email;
     public $admin;
-     public $token;
+    public $token;
+    public $id_grade = 1;
     
     public function __construct()
     {

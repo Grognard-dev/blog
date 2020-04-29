@@ -36,15 +36,16 @@ class UserTable
     
      public function insertUser($user)
     {
-       $inscription = $this->db->prepareAndExecute("INSERT INTO blog_utilisateur (email, mdp, prenom, nom, pseudo,token,actif) 
-        VALUES (:email, :mdp, :prenom, :nom, :pseudo,:token,:actif)",
+       $inscription = $this->db->prepareAndExecute("INSERT INTO blog_utilisateur (email, mdp, prenom, nom, pseudo,token,actif,id_grade) 
+        VALUES (:email, :mdp, :prenom, :nom, :pseudo,:token,:actif,:id_grade)",
         [':email' => $user->email,
         ':mdp' => password_hash($user->mdp, PASSWORD_DEFAULT ),
         ':prenom' => $user->prenom,
         ':nom'=>$user->nom,
         ':pseudo'=>$user->pseudo,
         ':token'=> $user->token,
-        ':actif'=>0]) ;
+        ':actif'=>0,
+        ':id_grade'=>$user->id_grade]) ;
     }
 
      public function activationtoken($pseudo)
@@ -66,7 +67,8 @@ class UserTable
         $user->pseudo = $tableau['pseudo'];
         $user->email = $tableau['email'];
         $user->actif = $tableau['actif'];
-         $user->token = $tableau['token'];
+        $user->token = $tableau['token'];
+        $user->id_grade = $tableau['id_grade'];
         return $user;
     }
 }
