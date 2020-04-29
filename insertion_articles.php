@@ -6,16 +6,16 @@ $articleTable = new ArticlesTable($db);
 
 
 if (isset($_POST['bouton'])){
-    $nom = empty($_POST['nom']) ? null : $_POST['nom'];
+    $nom_article = empty($_POST['nom_article']) ? null : $_POST['nom_article'];
     $date_de_parution = empty($_POST['date_de_parution']) ? null : $_POST['date_de_parution'];
     $text_card= empty($_POST['text_card']) ? null : $_POST['text_card'];
     
-    if ($nom === null || $date_de_parution === null  || $text_card === null) {
+    if ($nom_article === null || $date_de_parution === null  || $text_card === null) {
         $erreur = 'Veuillez remplir tous les champs';
     }else {
         
         $article = new Article();
-        $article->nom = $nom;
+        $article->nom_article = $nom_article;
         $article->date_de_parution =  $date_de_parution;
         $article->text_card = $text_card;
         $article->id_utilisateur = $_SESSION['ID'];

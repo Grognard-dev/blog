@@ -22,9 +22,9 @@ class ArticlesTable
         return $this->createArticles($tableau);
     }
 
-    public function recupParNomArticles($nom)
+    public function recupParNomArticles($nom_article)
     {
-         $requete = $this->db->prepareAndExecute('SELECT * FROM blog_articles WHERE nom = :nom',[':nom' => $nom]);
+         $requete = $this->db->prepareAndExecute('SELECT * FROM blog_articles WHERE nom_article = :nom_article',[':nom_article' => $nom_article]);
         $tableau = $requete->fetch();
         if($tableau === false){
             return null;
@@ -35,7 +35,7 @@ class ArticlesTable
     public function recupTousArticles()
     {
          $requete = $this->db->prepareAndExecute("SELECT * FROM blog_articles",[]);
-        $tableau = $requete->fetchAll();
+        $tableau = $requete->fetchALL();
         if($tableau === false){
             return null;
         }
@@ -51,9 +51,9 @@ class ArticlesTable
     }
     public function insertArticles($articles)
     {
-       $inscription = $this->db->prepareAndExecute("INSERT INTO blog_articles (nom, date_de_parution, photo_card, text_card, archive, id_utilisateur) 
-        VALUES (:nom, :date_de_parution, :photo_card, :text_card, :archive, :id_utilisateur)",
-        [':nom' => $articles->nom,
+       $inscription = $this->db->prepareAndExecute("INSERT INTO blog_articles (nom_article, date_de_parution, photo_card, text_card, archive, id_utilisateur) 
+        VALUES (:nom_article, :date_de_parution, :photo_card, :text_card, :archive, :id_utilisateur)",
+        [':nom_article' => $articles->nom_article,
         ':date_de_parution' => $articles->date_de_parution,
         ':photo_card' => $articles->photo_card,
         ':text_card'=>$articles->text_card,
@@ -72,7 +72,7 @@ class ArticlesTable
     {
          $articles = new Article();
         $articles->id_articles = $tableau['id_articles'];
-        $articles->nom = $tableau['nom'];
+        $articles->nom_article = $tableau['nom_article'];
         $articles->date_de_parution = $tableau['date_de_parution'];
         $articles->photo_card = $tableau['photo_card'];
         $articles->text_card = $tableau['text_card'];

@@ -1,10 +1,12 @@
 <?php 
 require_once "boot.php";
 
-$db = new Database($config["utilisateur"],$config["mdp"], $config["dsn"]);
+$dbh = new PDO($config["dsn"], $config["utilisateur"], $config["mdp"]);
 
 $articlesTable = new ArticlesTable($db);
 
-$article = $articlesTable->recupTousArticles();
+$liste = $dbh->prepare("SELECT * FROM blog_articles");
+$liste->execute();
+$article = $liste->fetchAll();
 
 require 'vue/index.php';
