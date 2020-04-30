@@ -207,7 +207,7 @@
 									</div>
 									
 							<div class="col-lg-7 post-right">
-										<a href="image-post.html">
+										<a href="editer_articles.php?ID=<?=$articles->id_article?>">
 											<h4><?= $articles->nom_article?></h4>
 										</a>
 										<ul class="meta">

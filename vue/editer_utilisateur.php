@@ -49,5 +49,6 @@
             <button class="shadow bg-purple-300 hover:bg-purple-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded m-4" type="submit" name="ajout_grade" class="btn btn-primary mb-2">ajout genre</button>
             </div>
             </form>
+            <a class="message" href="index.php">Retour a l'accueil</a>
 </body>
 </html>

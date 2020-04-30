@@ -32,6 +32,21 @@ class ArticlesTable
         return $this->createArticles($tableau);
     }
 
+    public function updateArticle($articles)
+    {
+       $inscription = $this->db->prepareAndExecute("UPDATE blog_articles SET
+            nom_article = :nom_article, 
+            date_de_parution = :date_de_parution,
+            photo_card = :photo_card,
+            text_card = :text_card
+            WHERE id_article = :ID",
+            [':ID' => $articles->id_article,
+                ':nom_article' => $articles->nom_article,
+        ':date_de_parution' => $articles->date_de_parution,
+        ':photo_card'=>$articles->photo_card,
+        ':text_card'=>$articles->text_card] );
+    }
+
     public function recupTousArticles()
     {
          $requete = $this->db->prepareAndExecute("SELECT * FROM blog_articles",[]);

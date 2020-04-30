@@ -4,7 +4,7 @@ class Article
 {
    
     public $id_article;
-    public $nom;
+    public $nom_article;
     public $date_de_parution;
     public $photo_card;
     public $text_card;
