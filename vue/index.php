@@ -48,12 +48,15 @@
 							<ul>
 								<li><a href="tel:+440 012 3654 896"><span class="lnr lnr-phone-handset"></span><span>+440 012 3654 896</span></a></li>
 								<li><a href="mailto:support@colorlib.com"><span class="lnr lnr-envelope"></span><span>support@colorlib.com</span></a></li>
+									<?php if(isset($_SESSION["is_admin"]) && $_SESSION["is_admin"]):?>
+							<li><a class="lnr lnr-envelope" href="insertion_articles.php">insérer article</a></li>
+								<?php endif?>
 								  <?php if(isset($_SESSION['Pseudo'])): ?>
      						 <form method="POST" action="logout.php" >
         						<li><button>Deconnexion</button></li>
      							 </form>
-							<li><a class="lnr lnr-envelope" href="insertion_articles.php">insérer article</a></li>
 							<li><a  href="compte_user.php?ID=<?=$_SESSION["ID"]?>">votre compte</a></li>
+							<li><a  href="editer_utilisateur.php?ID=<?=$_SESSION["ID"]?>">modifier compte</a></li>
       							<?php else:?>
       
 								<li><a href="login.php"><span class="lnr lnr-envelope"></span><span>login</span></a></li>
@@ -199,21 +202,21 @@
 									<div class="col-lg-5 post-left">
 										<div class="feature-img relative">
 											<div class="overlay overlay-bg"></div>
-											<img class="img-fluid" src="photoarticles/.<?= $articles['photo_card']?>" alt="">
+											<img class="img-fluid" src="photoarticles/.<?= $articles->photo_card?>" alt="">
 										</div>
 									</div>
 									
 							<div class="col-lg-7 post-right">
 										<a href="image-post.html">
-											<h4><?= $articles['nom_article']?></h4>
+											<h4><?= $articles->nom_article?></h4>
 										</a>
 										<ul class="meta">
-											<li><a href="#"><span class="lnr lnr-user"></span><?= $articles['id_utilisateur']?></a></li>
-											<li><a href="#"><span class="lnr lnr-calendar-full"></span><?= $articles['date_de_parution'] ?></a></li>
+											<li><a href="#"><span class="lnr lnr-user"></span><?= $articles->id_utilisateur?></a></li>
+											<li><a href="#"><span class="lnr lnr-calendar-full"></span><?= $articles->date_de_parution ?></a></li>
 											<li><a href="#"><span class="lnr lnr-bubble"></span>06 Comments</a></li>
 										</ul>
 										<p class="excert">
-											<?= $articles['text_card']?>
+											<?= $articles->text_card?>
 										</p>
 									</div>
 								</div>

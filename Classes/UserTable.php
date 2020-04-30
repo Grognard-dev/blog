@@ -48,6 +48,32 @@ class UserTable
         ':id_grade'=>$user->id_grade]) ;
     }
 
+    public function updateUser($user)
+    {
+       $inscription = $this->db->prepareAndExecute("UPDATE blog_utilisateur SET
+            nom = :nom, 
+            prenom = :prenom,
+            pseudo = :pseudo,
+            email = :email, 
+            mdp = :mdp,
+            id_grade = :id_grade
+            WHERE id_utilisateur = :ID",
+            [':ID' => $user->id_utilisateur,
+                ':email' => $user->email,
+        ':mdp' => password_hash($user->mdp, PASSWORD_DEFAULT ),
+        ':prenom' => $user->prenom,
+        ':nom'=>$user->nom,
+        ':pseudo'=>$user->pseudo,
+        ':id_grade'=>$user->id_grade] );
+    }
+
+    public function selectIdGrade($user)
+    {
+              $requete = $this->db->prepareAndExecute('SELECT * FROM blog_utilisateur WHERE id_grade = :id_grade',[':id_grade' => $user->id_grade]);
+             $requete->fetchAll();
+           
+    }
+
      public function activationtoken($pseudo)
     {
      

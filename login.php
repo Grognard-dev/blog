@@ -31,10 +31,15 @@ if (isset($_POST['login'])){
             session_regenerate_id();
             $_SESSION["ID"] = $utilisateur->id_utilisateur;
             $_SESSION["Pseudo"] = $utilisateur->pseudo;
-            if($utilisateur->admin === 1){
+            if($utilisateur->id_grade === 3){
                 $_SESSION['is_admin'] = true;
             }else{
                 $_SESSION['is_admin'] = false;
+            }
+             if($utilisateur->id_grade === 2){
+                $_SESSION['is_moderateur'] = true;
+            }else{
+                $_SESSION['is_moderateur'] = false;
             }
             header('Location: index.php');
             exit();

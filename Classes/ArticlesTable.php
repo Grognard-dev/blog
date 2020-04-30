@@ -14,7 +14,7 @@ class ArticlesTable
     
      public  function recupParId($id_article)
     {
-         $requete = $this->db->prepareAndExecute('SELECT * FROM blog_articles WHERE id_articles = :id_articles',[':id_articles' => $id_article]);
+         $requete = $this->db->prepareAndExecute('SELECT * FROM blog_articles WHERE id_article = :id_article',[':id_article' => $id_article]);
         $tableau = $requete->fetch();
         if($tableau === false){
             return null;
@@ -42,7 +42,7 @@ class ArticlesTable
         $tab = [];
         foreach ($tableau as $articles)
         {
-            $tab[$articles['id_articles']]  = $this->createArticles($articles);
+            $tab[$articles['id_article']]  = $this->createArticles($articles);
             
         }
          return $tab;
@@ -71,7 +71,7 @@ class ArticlesTable
     protected function createArticles($tableau)
     {
          $articles = new Article();
-        $articles->id_articles = $tableau['id_articles'];
+        $articles->id_article = $tableau['id_article'];
         $articles->nom_article = $tableau['nom_article'];
         $articles->date_de_parution = $tableau['date_de_parution'];
         $articles->photo_card = $tableau['photo_card'];
@@ -80,4 +80,7 @@ class ArticlesTable
         $articles->id_utilisateur = $tableau['id_utilisateur'];
         return $articles;
     }
+
+    
+   
 }
