@@ -96,6 +96,10 @@ class ArticlesTable
         return $articles;
     }
 
+      public function deleteArticle($ID)
+    {
+    $delete =$this->db->prepareAndExecute("DELETE FROM blog_articles WHERE id_article = :ID LIMIT 1",[':ID' => $ID]);
+    }
     
    
 }

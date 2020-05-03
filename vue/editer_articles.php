@@ -31,6 +31,7 @@
   <p><?=e($erreur)?></p>
 <?php endif?>
 <a class="message" href="index.php">Retour a l'accueil</a>
+<a class="message" href="liste_article.php">Retour liste article</a>
 
 </body>
 </html>

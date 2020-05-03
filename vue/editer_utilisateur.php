@@ -37,18 +37,10 @@
 
 <a  class="shadow bg-purple-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded m-4" href="compte_user.php?ID=<?=$_SESSION["ID"]?>">Retour a votre compte</a>
 </form>
-  <form method="post">
-            <?php $id_grades = $usertable->selectIdGrade($utilisateur);
-            echo "<select class='block appearance-none w-48 bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline m-4' name='select_genre' >";
-            foreach($id_grades as $id_grade){
-                echo   "<option value=".$id_grade->id_grade.">".$id_grade->id_grade."</option>";
-            } 
-            echo "</select>";
-            ?>
-            <div class="bouton">
-            <button class="shadow bg-purple-300 hover:bg-purple-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded m-4" type="submit" name="ajout_grade" class="btn btn-primary mb-2">ajout genre</button>
-            </div>
-            </form>
-            <a class="message" href="index.php">Retour a l'accueil</a>
+  
+            <a class="shadow bg-purple-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded m-4" class="message" href="index.php">Retour a l'accueil</a>
+            <?php if(isset($_SESSION["is_admin"]) && $_SESSION["is_admin"]):?>
+            <a class="message" href="liste_utilisateur.php">Retour liste Utilisateur</a>
+            <?php endif?>
 </body>
 </html>

@@ -33,7 +33,26 @@ class UserTable
         return $this->createUserFromDbResult($tableau);
     }
 
+    public function recupTousUtilisateur()
+    {
+         $requete = $this->db->prepareAndExecute("SELECT * FROM blog_utilisateur",[]);
+        $tableau = $requete->fetchALL();
+        if($tableau === false){
+            return null;
+        }
+        $tab = [];
+        foreach ($tableau as $Users)
+        {
+            $tab[$Users['id_utilisateur']]  = $this->createUserFromDbResult($Users);
+            
+        }
+         return $tab;
+    }
     
+    public function deleteUser($ID)
+    {
+    $delete =$this->db->prepareAndExecute("DELETE FROM blog_utilisateur WHERE id_utilisateur = :ID LIMIT 1",[':ID' => $ID]);
+    }
      public function insertUser($user)
     {
        $inscription = $this->db->prepareAndExecute("INSERT INTO blog_utilisateur (email, mdp, prenom, nom, pseudo,token,actif,id_grade) 
