@@ -18,5 +18,16 @@ if(isset($_SESSION['flash']) ){
 $config = require "config.php";
 
 spl_autoload_register(function ($class_name) {
-    require_once 'Classes/'.$class_name.'.php' ;
+   $file =  'Modeles/'.$class_name.'.php' ;
+   if(file_exists($file))
+   {
+       require_once $file;
+       return;
+   }
+    $file =  'Classes/'.$class_name.'.php' ;
+   if(file_exists($file))
+   {
+       require_once $file;
+       return;
+   }
 });
