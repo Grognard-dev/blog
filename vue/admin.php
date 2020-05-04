@@ -11,6 +11,7 @@
     <br>
 <ul class="flex ">
     <li  class="flex-initial" ><a class=" shadow bg-red-300 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded m-4" href="liste_article.php?ID=<?=$_SESSION['ID']?>">Liste des articles</a></li>
+     <li  class="flex-initial" ><a class=" shadow bg-red-300 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded m-4" href="archive.php?ID=<?=$_SESSION['ID']?>">Liste des archives</a></li>
 </ul>
 <H2 class="shadow bg-center focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded m-4 text-64 w-32">Liste user</H2>
 <br>

@@ -5,20 +5,20 @@ require "securite.php";
 $db = new Database($config["utilisateur"],$config["mdp"], $config["dsn"]);
 
 $ArticleTable = new ArticlesTable($db);
+$Archives = $ArticleTable->articleArchiver();
 
-$Articles = $ArticleTable->recupTousArticles();
 
 if(isset($_POST['delete_article'])){
   $ArticleTable->deleteArticle($_POST['delete_article']);
     $_SESSION['flash'] = "Suppression effectuée";
-        header('Location: liste_article.php?ID='.$_SESSION['ID']);
+        header('Location: archive.php?ID='.$_SESSION['ID']);
         die;
 }
 if(isset($_POST['archiver'])){
-  $ArticleTable->archiverArticle($_POST['archiver']);
+  $ArticleTable->desarchiverArticle($_POST['archiver']);
     $_SESSION['flash'] = "Suppression effectuée";
-        header('Location: liste_article.php?ID='.$_SESSION['ID']);
+        header('Location: archive.php?ID='.$_SESSION['ID']);
         die;
 }
 
-require "vue/liste_article.php";
+require "vue/archive.php";

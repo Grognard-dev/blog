@@ -49,7 +49,7 @@ class ArticlesTable
 
     public function recupTousArticles()
     {
-         $requete = $this->db->prepareAndExecute("SELECT * FROM blog_articles",[]);
+         $requete = $this->db->prepareAndExecute("SELECT * FROM blog_articles WHERE archive = :archive",['archive' => 0]);
         $tableau = $requete->fetchALL();
         if($tableau === false){
             return null;
@@ -101,6 +101,33 @@ class ArticlesTable
     $delete =$this->db->prepareAndExecute("DELETE FROM blog_articles WHERE id_article = :ID LIMIT 1",[':ID' => $ID]);
     }
 
-  
+    public function articleArchiver()
+    {
+          $requete = $this->db->prepareAndExecute("SELECT * FROM blog_articles WHERE archive = :archive",['archive' => 1]);
+        $tableau = $requete->fetchALL();
+        if($tableau === false){
+            return null;
+        }
+        $tab = [];
+        foreach ($tableau as $articles)
+        {
+            $tab[$articles['id_article']]  = $this->createArticles($articles);
+            
+        }
+         return $tab;
+    }
+
+    public function archiverArticle($id_article)
+    {
+     
+        $this->db->prepareAndExecute("UPDATE blog_articles SET archive = 1 WHERE id_article = :id_article ",[':id_article' => $id_article]);
+      
+     
+    }
+
+    public function desarchiverArticle($id_article)
+    {
+          $this->db->prepareAndExecute("UPDATE blog_articles SET archive = 0 WHERE id_article = :id_article ",[':id_article' => $id_article]);
+    }
    
 }
