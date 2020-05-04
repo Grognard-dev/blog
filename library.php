@@ -3,6 +3,12 @@ function e($string, $flags=ENT_QUOTES){
     return htmlspecialchars ($string,$flags);
 }
 
+function dump($beautify)
+{
+    echo "<pre>";
+    var_dump($beautify);
+    echo "</pre>";
+}
 function flash(){
     global $flash;
     if(isset($flash)){

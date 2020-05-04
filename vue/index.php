@@ -220,8 +220,8 @@
 											<h4><?= $articles->nom_article?></h4>
 										</a>
 										<ul class="meta">
-											<li><a href="#"><span class="lnr lnr-user"></span><?= $articles->id_utilisateur?></a></li>
-											<li><a href="#"><span class="lnr lnr-calendar-full"></span><?= $articles->date_de_parution ?></a></li>
+											<li><a href="#"><span class="lnr lnr-user"></span><?= e($utilisateur[$articles->id_utilisateur]->pseudo)?></a></li>
+											<li><a href="#"><span class="lnr lnr-calendar-full"></span><?= date('l j F Y,H:i',strtotime($articles->date_de_parution))?></a></li>
 											<li><a href="#"><span class="lnr lnr-bubble"></span>06 Comments</a></li>
 										</ul>
 										<p class="excert">
@@ -232,11 +232,7 @@
 											<span>modifier</span>
 										</a>
 										<?php endif ?>
-										<?php if(isset($_SESSION["is_moderateur"]) && $_SESSION["is_moderateur"]):?>
-										<a href="editer_articles.php?ID=<?=$articles->id_article?>">
-											<span>modifier</span>
-										</a>
-										<?php endif ?>
+								
 									</div>
 								</div>
 								

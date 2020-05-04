@@ -1,5 +1,6 @@
 <?php
 require_once 'boot.php';
+require "securite.php";
 $db = new Database($config["utilisateur"],$config["mdp"], $config["dsn"]);
 
 $articleTable = new ArticlesTable($db);
@@ -7,16 +8,14 @@ $articleTable = new ArticlesTable($db);
 
 if (isset($_POST['bouton'])){
     $nom_article = empty($_POST['nom_article']) ? null : $_POST['nom_article'];
-    $date_de_parution = empty($_POST['date_de_parution']) ? null : $_POST['date_de_parution'];
     $text_card= empty($_POST['text_card']) ? null : $_POST['text_card'];
     
-    if ($nom_article === null || $date_de_parution === null  || $text_card === null) {
+    if ($nom_article === null  || $text_card === null) {
         $erreur = 'Veuillez remplir tous les champs';
     }else {
         
         $article = new Article();
         $article->nom_article = $nom_article;
-        $article->date_de_parution =  $date_de_parution;
         $article->text_card = $text_card;
         $article->id_utilisateur = $_SESSION['ID'];
         $articleTable->insertArticles($article);

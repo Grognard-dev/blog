@@ -7,4 +7,9 @@ $articlesTable = new ArticlesTable($db);
 
 $article = $articlesTable->recupTousArticles();
 
+$utilisateurTable = new UserTable($db);
+$utilisateur = $utilisateurTable->recupTousUtilisateur();
+$commentaireTable = new CommentaireTable($db);
+
+
 require 'vue/index.php';
